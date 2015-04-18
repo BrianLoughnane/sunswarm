@@ -5,7 +5,7 @@ body {
 }
 
 #main {
-    width: 500px;
+    width: 80%;
     margin: auto;
     text-align: left;
     background: white;
@@ -21,7 +21,15 @@ body {
 
 #main ul {
     padding-left: 20px;
+    list-style: none;
 }
+
+th, td {
+    width: 1%;
+    text-align: center;
+}
+
+
 
 #main .error {
     border: 1px solid red;
