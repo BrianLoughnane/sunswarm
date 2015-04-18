@@ -1,0 +1,68 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+</head>
+
+<body>
+  
+  <div id="main">
+    <form id="submitSolarProject" onsubmit="submitSolarProject()">
+      Project name:<br>
+      <input type="text" id="name">
+      <br>
+      Size in KW:<br>
+      <input type="text" id="size">
+      <br>
+      Address:<br>
+      <input type="text" id="address">
+      <br>
+      Utility:<br>
+      <input type="text" id="utility">
+      <br>
+      Kilo Watt Hours:<br>
+      <input type="text" id="kwh">
+      <br>
+      <br>
+      <input type="submit" id="Submit">
+    </form>
+
+    <div style="display:none" class="error">
+      There was a problem inserting this project. Please try again.
+    </div>
+
+    <div style="display:none" class="success">
+      <p>We have added a new Solar Project!</p>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    Parse.initialize("KMXJi39L5mHkKU0RGNmqX2xvV3N8xfD6xht4ZeyJ", "XWCUCmyNphIpRGK0KcwNuVv2XbC2QVcZvtfpm3SS");
+    function submitSolarProject() {
+      
+      var SolarProject = Parse.Object.extend("SolarProject");
+      var solarProject = new SolarProject();
+        solarProject.save({name: document.getElementById("name").value, 
+          size: document.getElementById("size").value,
+          address: document.getElementById("address").value,
+          utility: document.getElementById("utility").value,
+          kwh: document.getElementById("kwh").value}, {
+        success: function(object) {
+          $(".success").show();
+        },
+        error: function(model, error) {
+          $(".error").show();
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>
