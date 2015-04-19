@@ -139,27 +139,25 @@ $(document).on('ready', function() {
 						customerData[customer.id] = customer;
 
 						appendCustomer(customer);
-						if(index === ids.length - 1) {
-							callGenability(customerData);
-						}
+						// if(index === ids.length - 1) {
+						// 	callGenability(customerData);
+						// }
 					})
 					 // end done
 				});// end ajax
 			});	// end each
 
-
-function callGenability(data) {
-	var rate, annualKwh;
-	for(var customer in data) {
-		rate = data[customer].rate;
-		annualKwh = data[customer].annualKwh
-		
-		$.ajax('')
-			.done(function (data) {
-
-			})
-	}
-}
+	$('.mapIt').on('click', function(e) {
+		e.preventDefault();
+		debugger
+		$('#data').slideUp(function() {
+			$('#data').load('SolarProjectsMap.html', {
+				done: function() {
+					$('#data').delay(400).slideDown();
+				}
+			});
+		});
+	});
 
 // debugger
 }); // end on ready
