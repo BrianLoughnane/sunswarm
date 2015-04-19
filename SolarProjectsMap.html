@@ -20,7 +20,7 @@
       var map;
       var latitude = 37;
       var longitude = -122;
-      var sunImage = 'sun.png';
+      var sunImage = 'images/sun.png';
       var houseImage = 'house.png';
       function setLatLong(lat, long) {
         latitude = lat;
@@ -64,11 +64,12 @@
           _.delay(codeAddress, 500, customerData[customer].address + ' Oakland, CA', houseImage);          
         }
 
-        var solarProjects = ['45500 Fremont Blvd', '426 17th St', '2026 Broadway', '88 Collin P Kelly Jr '];
-        debugger
+        var solarProjects = ['149 Montecito Ave', '45500 Fremont Blvd', '426 17th St', '2026 Broadway', '88 Collin P Kelly Jr '];
+
         _.each(solarProjects, function (project) {
+          var address = project + ' Oakland, CA';
           debugger
-          _.delay(codeAddress, 500, project + ' Oakland, CA', sunImage);
+          _.delay(codeAddress, 300, address, sunImage);
         });
       }
 
