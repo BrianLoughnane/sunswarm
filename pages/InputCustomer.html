@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>  
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/styles.css">
+
+	<meta charset="UTF-8">
+	<title>Consumer Sign Up</title>
+</head>
+<body>
+	<header>
+	 	<h1>Consumer Sign Up</h1>
+	 	<a href="../index.html"><button>Home</button></a>
+	    <a href="CustomerList.html"><button>Customer List</button></a>
+	    <a href="ProjectList.html"><button>Project List</button></a>
+	    <a href="SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
+	</header> 
+	<div class="main">
+		<p>To continue, please create an account with Utility API <a href="https://utilityapi.com/api/users/new.html">here</a>, then fill out the following form:</p>
+		<form id="submitConsumerInfo" onsubmit="submitConsumerInfo()">
+		  <label>Name: <input type="text" id="name"></label>
+		  <label>Address: <input type="text" id="address"></label>
+		  <label>Email: <input type="email" id="email"></label>
+		  <label><input type="submit" id="submit" value="submit"></label>
+		</form>
+	</div> 
+</body>
+</html>

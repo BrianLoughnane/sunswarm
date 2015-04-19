@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>  
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <style type="text/css">
       html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
     </style>
@@ -10,7 +13,7 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?sensor=false">
     </script>
-    <script src='js/underscore.js'></script>
+    <script src='../js/underscore.js'></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
     <script type="text/javascript">
@@ -20,8 +23,8 @@
       var map;
       var latitude = 37;
       var longitude = -122;
-      var sunImage = 'images/sun.png';
-      var houseImage = 'house.png';
+      var sunImage = '../images/sun.png';
+      var houseImage = '../images/house.png';
       function setLatLong(lat, long) {
         latitude = lat;
         longitude = long;
@@ -105,7 +108,14 @@
       
     </script>
   </head>
-  <body>
-<div id="map-canvas"></div>
+  <body class='map-body'>
+    <header>
+      <h1>Solar Swarm</h1>
+      <a href="../index.html"><button>Home</button></a>
+      <a href="CustomerList.html"><button>Customer List</button></a>
+      <a href="ProjectList.html"><button>Project List</button></a>
+      <a href="SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
+    </header>   
+    <div id="map-canvas"></div>
   </body>
 </html>

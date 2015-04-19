@@ -2,40 +2,35 @@
 <head>
   <meta charset="utf-8">
 
-  <title>My Parse App</title>
+  <title>Add Project</title>
   <meta name="description" content="My Parse App">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <script type="text/javascript" src="js/app.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>  
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/styles.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+  <!-- <script type="text/javascript" src="../js/app.js"></script> -->
 </head>
 
 <body>
-  
-  <div id="main">
+  <header>
+    <h1>Add Project</h1>
+    <a href="../index.html"><button>Home</button></a>
+    <a href="CustomerList.html"><button>Customer List</button></a>
+    <a href="ProjectList.html"><button>Project List</button></a>
+    <a href="SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
+  </header>  
+  <div class="main">
+    <p>Let us know about your project and we will connect you with local consumers.</p>
     <form id="submitSolarProject" onsubmit="submitSolarProject()">
-      Project name:<br>
-      <input type="text" id="name">
-      <br>
-      Size in KW:<br>
-      <input type="text" id="size">
-      <br>
-      Address:<br>
-      <input type="text" id="address">
-      <br>
-      County:<br>
-      <input type="text" id="county">
-      <br>
-      Utility:<br>
-      <input type="text" id="utility">
-      <br>
-      Kilo Watt Hours:<br>
-      <input type="text" id="kwh">
-      <br>
-      <br>
-      <input type="submit" id="Submit">
+      <label>Project name: <input type="text" id="name"></label>
+      <label>Size in kW: <input type="text" id="size"></label>
+      <label>Address: <input type="text" id="address"></label>
+      <label>County: <input type="text" id="county"></label>
+      <label>Utility: <input type="text" id="utility"></label>
+      <label>kwH: <input type="text" id="kwh"></label>
+      <label><input type="submit" id="submit" value="submit"></label>
     </form>
 
     <div style="display:none" class="error">
@@ -79,17 +74,17 @@
           // Do something with the returned Parse.Object values
           for (var i = 0; i < results.length; i++) { 
             var object = results[i];
-          var solarProject = {};
-          solarProject["name"] = object.get('name'); 
-          solarProject["size"] = object.get('size'); 
-          solarProject["county"] = object.get('county'); 
-          solarProject["address"] = object.get('address'); 
-          solarProject["utility"] = object.get('utility'); 
-          solarProject["kwh"] = object.get('kwh'); 
+            var solarProject = {};
+            solarProject["name"] = object.get('name'); 
+            solarProject["size"] = object.get('size'); 
+            solarProject["county"] = object.get('county'); 
+            solarProject["address"] = object.get('address'); 
+            solarProject["utility"] = object.get('utility'); 
+            solarProject["kwh"] = object.get('kwh'); 
 
-          solarProjects.push(solarProject);
+            solarProjects.push(solarProject);
           }
-        return solarProjects;
+          return solarProjects;
         },
         error: function(error) {
           alert("Error: " + error.code + " " + error.message);

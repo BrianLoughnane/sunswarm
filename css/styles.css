@@ -2,9 +2,22 @@ body {
     background: #eee;
     text-align: center;
     padding: 0 25px;
+    font-family: 'Dosis', sans-serif;
 }
 
-#main {
+/*button {
+  padding: 1%;
+}*/
+
+a {
+  display: inline-block;
+}
+
+button {
+  margin: 0 10px;
+  padding: 10px;
+}
+.main {
     width: 80%;
     margin: auto;
     text-align: left;
@@ -14,12 +27,12 @@ body {
     border-width: 0 1px 1px 1px;
 }
 
-#main h1 {
+.main h1 {
     margin-top: 0;
     font-size: 35px;
 }
 
-#main ul {
+.main ul {
     padding-left: 20px;
     list-style: none;
 }
@@ -31,18 +44,66 @@ th, td {
 
 
 
-#main .error {
+.main .error {
     border: 1px solid red;
     background: #FDEFF0;
     padding: 20px;
 }
 
-#main .success {
+.main .success {
     margin-top: 25px;
 }
 
-#main .success code {
+.main .success code {
     font-size: 12px;
     color: green;
     line-height: 13px;
 }
+
+/*Submit Solar Project*/
+.main p {
+  text-align: center;
+  margin-bottom: 3%;
+}
+
+#submitSolarProject {
+    text-align: center;
+}
+
+form label {
+  cursor: pointer;
+  display: block;
+  margin: 1% auto;
+  position: relative;
+  text-align: right;
+  width: 40%;
+}
+
+#submitSolarProject input[type="submit"] {
+  margin-right: 16%;
+}
+
+
+.map-body header {
+  background: rgba(238,238,238,0.6);
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+}
+
+/*Submit Consumer Info*/
+
+#submitConsumerInfo {
+  margin: 0 18%;
+}
+
+/*Consumer List*/
+
+#data {
+  font-family: sans-serif;
+}
+
+
+
+
+

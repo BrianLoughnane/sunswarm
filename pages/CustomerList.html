@@ -1,0 +1,65 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Area Energy Consumers</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+
+  <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>  
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="../js/numeral.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+  <script type="text/javascript" src="../js/app.js"></script>
+  <script type="text/javascript" src="../js/underscore.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Area Energy Consumers</h1>
+    <a href="../index.html"><button>Home</button></a>
+    <a href="CustomerList.html"><button>Customer List</button></a>
+    <a href="ProjectList.html"><button>Project List</button></a>
+    <a href="SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
+  </header>
+  <div class="main">
+    <div id='data'> 
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Annual Cost</th>
+            <th>Annual kWh Usage</th>
+            <th>Annual Savings</th>
+          </tr>
+        </thead>
+        <tbody class="customer-list">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+
+
+  <script type="text/javascript">
+    Parse.initialize("KMXJi39L5mHkKU0RGNmqX2xvV3N8xfD6xht4ZeyJ", "XWCUCmyNphIpRGK0KcwNuVv2XbC2QVcZvtfpm3SS");
+    
+    var TestObject = Parse.Object.extend("TestObject");
+    var testObject = new TestObject();
+      testObject.save({foo: "bar"}, {
+      success: function(object) {
+        $(".success").show();
+      },
+      error: function(model, error) {
+        $(".error").show();
+      }
+    });
+  </script>
+</body>
+
+</html>
