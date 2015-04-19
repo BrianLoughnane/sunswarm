@@ -103,6 +103,17 @@ form label {
   font-family: sans-serif;
 }
 
+/*Project List*/
+
+.projectData {
+  font-family: sans-serif;
+}
+
+.projectData table {
+  width: 40%;
+  margin: auto;
+}
+
 
 
 
