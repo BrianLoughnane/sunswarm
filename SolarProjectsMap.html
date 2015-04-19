@@ -10,6 +10,9 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?sensor=false">
     </script>
+    <script src='js/underscore.js'></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
     <script type="text/javascript">
       var customerData = JSON.parse(sessionStorage.getItem('customerData'));
 
@@ -19,19 +22,56 @@
       var longitude = -122;
       var sunImage = 'sun.png';
       var houseImage = 'house.png';
-      debugger
       function setLatLong(lat, long) {
         latitude = lat;
         longitude = long;
         initialize();
       }
+      // Parse.initialize("KMXJi39L5mHkKU0RGNmqX2xvV3N8xfD6xht4ZeyJ", "XWCUCmyNphIpRGK0KcwNuVv2XbC2QVcZvtfpm3SS");
 
-      function loadAddresses() {
+      // function getSolarProjects() {
+        
+      //   var SolarProject = Parse.Object.extend("SolarProject");
+      //   var query = new Parse.Query(SolarProject);
+
+      //   var solarProjects = new Array();
+      //   query.find({
+      //     success: function(results) {
+      //       alert("Successfully retrieved " + results.length + " scores.");
+      //       // Do something with the returned Parse.Object values
+      //       for (var i = 0; i < results.length; i++) { 
+      //         var object = results[i];
+      //         var solarProject = {};
+      //         solarProject["name"] = object.get('name'); 
+      //         solarProject["size"] = object.get('size'); 
+      //         solarProject["county"] = object.get('county'); 
+      //         solarProject["address"] = object.get('address'); 
+      //         solarProject["utility"] = object.get('utility'); 
+      //         solarProject["kwh"] = object.get('kwh'); 
+
+      //         solarProjects.push(solarProject);
+      //       }
+      //     return solarProjects;
+      //     },
+      //     error: function(error) {
+      //       alert("Error: " + error.code + " " + error.message);
+      //     }
+      //   });
+      // }
+
+      function loadAddresses() {   
         for(var customer in customerData) {
+          _.delay(codeAddress, 500, customerData[customer].address + ' Oakland, CA', houseImage);          
+        }
+
+        var solarProjects = ['45500 Fremont Blvd', '426 17th St', '2026 Broadway', '88 Collin P Kelly Jr '];
+        debugger
+        _.each(solarProjects, function (project) {
           debugger
-          codeAddress(customerData[customer].address, sunImage);
-        }  
+          _.delay(codeAddress, 500, project + ' Oakland, CA', sunImage);
+        });
       }
+
 
       function initialize() {
         geocoder = new google.maps.Geocoder();
