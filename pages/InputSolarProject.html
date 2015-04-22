@@ -29,7 +29,7 @@
       <label>County: <input type="text" id="county"></label>
       <label>Utility: <input type="text" id="utility"></label>
       <label>kwH: <input type="text" id="kwh"></label>
-      <label><input type="submit" id="submit" value="submit"></label>
+      <label><input type="button" id="submit" value="submit"></label>
     </form>
 
     <div style="display:none" class="error">
@@ -42,52 +42,28 @@
   </div>
 
   <script type="text/javascript">
-    Parse.initialize("KMXJi39L5mHkKU0RGNmqX2xvV3N8xfD6xht4ZeyJ", "XWCUCmyNphIpRGK0KcwNuVv2XbC2QVcZvtfpm3SS");
+    $("#submit")[0].addEventListener("click", submitSolarProject);
+    
     function submitSolarProject() {
-      
+      Parse.initialize("KMXJi39L5mHkKU0RGNmqX2xvV3N8xfD6xht4ZeyJ", "XWCUCmyNphIpRGK0KcwNuVv2XbC2QVcZvtfpm3SS");
+
       var SolarProject = Parse.Object.extend("SolarProject");
       var solarProject = new SolarProject();
-        solarProject.save({name: document.getElementById("name").value, 
-          size: document.getElementById("size").value,
-          address: document.getElementById("address").value,
-          county: document.getElementById("county").value,
-          utility: document.getElementById("utility").value,
-          kwh: document.getElementById("kwh").value}, {
-        success: function(object) {
-          $(".success").show();
-        },
-        error: function(model, error) {
-          $(".error").show();
-        }
-      });
-    }
-    function getSolarProjects() {
-      
-      var SolarProject = Parse.Object.extend("SolarProject");
-      var query = new Parse.Query(SolarProject);
+      solarProject.set("name", $("#name").val());
+      solarProject.set("size", $("#size").val());
+      solarProject.set("address", $("#address").val());
+      solarProject.set("county", $("#county").val());
+      solarProject.set("utility", $("#utility").val());
+      solarProject.set("kwh", $("#kwh").val());
 
-      var solarProjects = new Array();
-      query.find({
-        success: function(results) {
-          alert("Successfully retrieved " + results.length + " scores.");
-          // Do something with the returned Parse.Object values
-          for (var i = 0; i < results.length; i++) { 
-            var object = results[i];
-            var solarProject = {};
-            solarProject["name"] = object.get('name'); 
-            solarProject["size"] = object.get('size'); 
-            solarProject["county"] = object.get('county'); 
-            solarProject["address"] = object.get('address'); 
-            solarProject["utility"] = object.get('utility'); 
-            solarProject["kwh"] = object.get('kwh'); 
-
-            solarProjects.push(solarProject);
-          }
-          return solarProjects;
-        },
-        error: function(error) {
-          alert("Error: " + error.code + " " + error.message);
-        }
+      solarProject.save(null, {
+      success: function(customer) {
+        $(".success").show();
+        $("#submitSolarProject")[0].reset();
+      },
+      error: function(customer, error) {
+        $(".error").show();
+      }
       });
     }
   </script>
