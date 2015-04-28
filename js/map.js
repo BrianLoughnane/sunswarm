@@ -1,4 +1,4 @@
-var customerData = JSON.parse(sessionStorage.getItem('consumerData'));
+var consumerData = JSON.parse(sessionStorage.getItem('consumerData'));
 
 var geocoder;
 var map;
@@ -58,9 +58,9 @@ function codeAddress(address, image) {
 }
 
 function loadAddresses() {
-  for(var customer in customerData) {
-    _.delay(codeAddress, 500, customerData[customer].address + ' Oakland, CA', houseImage);
-  }
+  _.each(consumerData, function (consumer) {
+    _.delay(codeAddress, 500, consumer.address + ' Oakland, CA', houseImage);
+  });
 
   var solarProjects = ['149 Montecito Ave', '45500 Fremont Blvd', '426 17th St', '2026 Broadway', '88 Collin P Kelly Jr '];
 

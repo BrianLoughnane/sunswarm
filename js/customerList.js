@@ -5,56 +5,60 @@ $(document).on('ready', function() {
 		$('.customer-list').append(item);
 	}
 
-	
-	var p = new Promise(function (resolve, reject) {
-		var consumerData = {};
-
+	var consumerData;
+	var outsideP = new Promise(function (resolve) {
 		$.ajax('https://utilityapi.com/api/services.json?access_token=hackathontoken')
 			.then(function (data) {
-				_.each(data, function (consumer, index) {
-					var id = consumer.uid;
-					var consumer = {
-						uid: id,
-						name: consumer.utility_billing_contact,
-						utility: consumer.utility,
-						address: consumer.utility_service_address,
-						rate: consumer.utility_tariff_name,
-						billCount: consumer.bill_count
-					}
+				resolve(
+					Promise.all(
+						_.map(data, function (consumer) {
 
-					$.ajax('https://utilityapi.com/api/services/'+id+'/bills.json?access_token=hackathontoken')
-						.then(function (bills) {
-							var annualCost = bills.map(function (bill) { 
-								return bill.bill_total; 
-							}).reduce(function (accum, next) {
-								return accum + next;
-							});
-							
-							var annualKwh = bills.map(function (bill) { 
-								return bill.bill_total_kWh; 
-							}).reduce(function (accum, next) {
-								return accum + next;
-							});
-
-							var billInfo = {						
-								annualCost: numeral(annualCost).format('$0,0.00'),
-								annualKwh: numeral(annualKwh).format('0,0.00'),
-								annualSavings: numeral(annualKwh * .03).format('$0,0.00')
+							var id = consumer.uid;
+							var consumer = {
+								uid: id,
+								name: consumer.utility_billing_contact,
+								utility: consumer.utility,
+								address: consumer.utility_service_address,
+								rate: consumer.utility_tariff_name,
+								billCount: consumer.bill_count
 							}
 
-							var customerInfo = _.extend(consumer, billInfo);
-							consumerData[id] = customerInfo;
-							appendCustomer(customerInfo);
-							
-							if(index === data.length - 1) {
-								resolve(consumerData);
-							}
-						});
-				});
-			});
-	});
+							var p = new Promise(function (resolve, reject) {
+								$.ajax('https://utilityapi.com/api/services/'+id+'/bills.json?access_token=hackathontoken')
+									.then(function (bills) {
+										var annualCost = bills.map(function (bill) { 
+											return bill.bill_total; 
+										}).reduce(function (accum, next) {
+											return accum + next;
+										});
+										
+										var annualKwh = bills.map(function (bill) { 
+											return bill.bill_total_kWh; 
+										}).reduce(function (accum, next) {
+											return accum + next;
+										});
 
-	p.then(function (consumerData) {
+										var billInfo = {						
+											annualCost: numeral(annualCost).format('$0,0.00'),
+											annualKwh: numeral(annualKwh).format('0,0.00'),
+											annualSavings: numeral(annualKwh * .03).format('$0,0.00')
+										}
+
+										var consumerData = _.extend(consumer, billInfo);
+										appendCustomer(consumerData);
+										resolve(consumerData);
+									}); // end then
+							}); // end p declaration
+
+							return p;
+
+						}) // end map
+					) // end
+				) // end outsideP resolve 
+			}); // end then 
+	}); // end outsideP
+
+	outsideP.then(function (consumerData) {
 		var stringy = JSON.stringify(consumerData)
 		sessionStorage.setItem('consumerData', stringy);
 	});
