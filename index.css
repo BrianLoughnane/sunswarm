@@ -1,0 +1,77 @@
+/*Grid*/
+
+* {
+	/*outline: 1px dashed darkorange;*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/*Utility Classes*/
+
+.hide {
+	display: none;
+}
+
+/*Body*/
+body {
+	background: url("images/background.jpg");
+	background-size: cover;
+	font-family: 'Dosis', sans-serif;
+}
+/*Header*/
+
+header {
+	background: rgba(255,252,243,0.4);
+	font-size: 20px;
+	padding: 40px 30px;
+}
+
+header .container {
+	position: relative;
+}
+
+.menu, .logo, .entry-buttons {
+	position: absolute;
+	top: 50%;
+	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.menu {
+	left: 0;
+}
+
+.logo {
+	font-size: 40px;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.logo:before {
+	content: url("images/logo.png");
+	vertical-align: middle;
+}
+
+.entry-buttons {
+	right: 0;
+}
+
+.entry-buttons * {
+	margin: 3px;
+}
+
+.menu:hover, .entry-buttons *:hover {
+	cursor: pointer;
+}
+
+.sign-up {
+	padding: 5px 12px;
+	border: 1px solid darkorange;
+}
+
