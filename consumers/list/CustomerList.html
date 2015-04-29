@@ -1,0 +1,48 @@
+<!doctype html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>  
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+
+  <meta charset="utf-8">
+
+  <title>Area Energy Consumers</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="../../lib/numeral.js"></script>
+  <script src="../../lib/underscore.js"></script>
+  <script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+  <script src="customerList.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Area Energy Consumers</h1>
+    <a href="../../index.html"><button>Home</button></a>
+    <a href="#"><button>Customer List</button></a>
+    <a href="../../developers/projects/ProjectList.html"><button>Project List</button></a>
+    <a href="../../map/SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
+  </header>
+  <div class="main">
+    <div id='data'> 
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Annual Cost</th>
+            <th>Annual kWh Usage</th>
+            <th>Annual Savings</th>
+          </tr>
+        </thead>
+        <tbody class="customer-list">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>

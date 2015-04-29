@@ -1,0 +1,49 @@
+<!doctype html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>  
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+
+  <title>Add Project</title>
+
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+  <script src="../../lib/parse-data.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Add Project</h1>
+    <a href="../../index.html"><button>Home</button></a>
+    <a href="../consumers/list/CustomerList.html"><button>Customer List</button></a>
+    <a href="../projects/ProjectList.html"><button>Project List</button></a>
+    <a href="../map/SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
+  </header>  
+  <div class="main">
+    <p>Let us know about your project and we will connect you with local consumers.</p>
+    <form id="submitSolarProject" onsubmit="submitSolarProject()">
+      <label>Project name: <input type="text" id="name"></label>
+      <label>Size in kW: <input type="text" id="size"></label>
+      <label>Address: <input type="text" id="address"></label>
+      <label>County: <input type="text" id="county"></label>
+      <label>Utility: <input type="text" id="utility"></label>
+      <label>kwH: <input type="text" id="kwh"></label>
+      <label><input type="submit" id="submit" value="submit"></label>
+    </form>
+
+    <div style="display:none" class="error">
+      There was a problem inserting this project. Please try again.
+    </div>
+
+    <div style="display:none" class="success">
+      <p>We have added a new Solar Project!</p>
+    </div>
+  </div>
+
+</body>
+
+</html>
