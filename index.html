@@ -1,55 +1,88 @@
 <!doctype html>
 <head>
   <meta charset="utf-8">
-  <title>Solar Swarm</title>
+  <title>SunSwarm</title>
   <meta name="description" content="My Parse App">
   <meta name="viewport" content="width=device-width">
 
   <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>  
   <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <!-- <link rel="stylesheet" href="css/styles.css"> -->
+  <link rel="stylesheet" href="index.css">
   
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script src="js/numeral.js"></script>
-  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
-  <script type="text/javascript" src="js/underscore.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+  <script src="lib/parse-data.js"></script>
+  <script src="lib/underscore.js"></script>
+  <script src="home.js"></script>
 </head>
 
 <body>
   <header>
-    <h1>Solar Swarm</h1>
-    <a href="#"><button>Home</button></a>
-    <a href="pages/CustomerList.html"><button>Customer List</button></a>
-    <a href="pages/ProjectList.html"><button>Project List</button></a>
-    <a href="pages/SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
+    <div class="container">
+      <span class="logo">SunSwarm</span>
+      <div class="entry-buttons">
+        <a class="log-in">Log In</a>
+        <a class="sign-up log-in">Sign Up</a>
+      </div>
+    </div>  
   </header>
+
+  <nav class="main-nav hide-menu">
+    <img class="menu-button" src="images/menu.png">
+    <ul>
+      <li><a>About Sunswarm</a></li>
+      <li><a>Why Community Solar?</a></li>
+      <li><a class="log-in">Log In / Sign Up</a></li>
+    </ul>
+  </nav>
+
   
-  <section class="home">
+
+  <section id="welcome">
+    
+  </section>
+  
+  <section id="community-solar">
+    
+  </section>
+
+<!--   <section id="SunSwarm">
+    
+  </section> -->
+
+  <section id="log-in">
+    <div class="portal">
+      <form>
+        <fieldset class="new-user-fieldset">
+          <label><input type="checkbox" class="new-user-checkbox"><span>Create an Account!</span></label>
+          <label class="terms-checkbox"><input type="checkbox"><span>I agree to the <a>terms</a></span></label>
+        </fieldset>
+        <fieldset class="main-fieldset">
+          <input type="email" class="email" placeholder="Email*">
+          <input type="password" class="password" placeholder="Password*">
+          <input type="password" class="password-confirm" placeholder="Confirm Password*">
+          <input type="submit" class="submit" value="Enter">
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
+  <aside style="display:none;">
+    <a href="#"><button>Home</button></a>
+    <a href="consumers/list/CustomerList.html"><button>Customer List</button></a>
+    <a href="developers/projects/ProjectList.html"><button>Project List</button></a>
+    <a href="map/SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
+  </aside>
+  
+  <section class="home" style="display:none;">
     <h4><em>Connecting people with community solar</em></h4>
     <p>Whether you are a homeowner, renter, or a business, you can save money by switching to solar without having to own any equipment.</p>
 
-    <a href="pages/InputCustomer.html"><button>I want clean, cheap, solar energy</button></a>
-    <a href="pages/InputSolarProject.html"><button>I am a community solar developer</button></a>
+    <a href="consumers/sign-up/InputCustomer.html"><button>I want clean, cheap, solar energy</button></a>
+    <a href="developers/sign-up/InputSolarProject.html"><button>I am a community solar developer</button></a>
   </section>
 
-  
-
-
-  <script type="text/javascript">
-    Parse.initialize("KMXJi39L5mHkKU0RGNmqX2xvV3N8xfD6xht4ZeyJ", "XWCUCmyNphIpRGK0KcwNuVv2XbC2QVcZvtfpm3SS");
-    
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-      testObject.save({foo: "bar"}, {
-      success: function(object) {
-        $(".success").show();
-      },
-      error: function(model, error) {
-        $(".error").show();
-      }
-    });
-  </script>
 </body>
 
 </html>
