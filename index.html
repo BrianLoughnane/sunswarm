@@ -20,37 +20,62 @@
 <body>
   <header>
     <div class="container">
-      <img class="menu" src="images/menu.png">
       <span class="logo">SunSwarm</span>
       <div class="entry-buttons">
-        <span>Log In</span>
-        <span class="sign-up">Sign Up</span>
+        <a class="log-in">Log In</a>
+        <a class="sign-up log-in">Sign Up</a>
       </div>
     </div>  
   </header>
 
-  <section class="log-in">
+  <nav class="main-nav hide-menu">
+    <img class="menu-button" src="images/menu.png">
+    <ul>
+      <li><a>About Sunswarm</a></li>
+      <li><a>Why Community Solar?</a></li>
+      <li><a class="log-in">Log In / Sign Up</a></li>
+    </ul>
+  </nav>
+
+  
+
+  <section id="welcome">
+    
+  </section>
+  
+  <section id="community-solar">
+    
+  </section>
+
+<!--   <section id="SunSwarm">
+    
+  </section> -->
+
+  <section id="log-in">
     <div class="portal">
       <form>
-        <fieldset>
+        <fieldset class="new-user-fieldset">
           <label><input type="checkbox" class="new-user-checkbox"><span>Create an Account!</span></label>
           <label class="terms-checkbox"><input type="checkbox"><span>I agree to the <a>terms</a></span></label>
         </fieldset>
-        <input type="email" class="email" placeholder="Email">
-        <input type="password" class="password" placeholder="Password">
-        <input type="submit" value="Enter">
+        <fieldset class="main-fieldset">
+          <input type="email" class="email" placeholder="Email*">
+          <input type="password" class="password" placeholder="Password*">
+          <input type="password" class="password-confirm" placeholder="Confirm Password*">
+          <input type="submit" class="submit" value="Enter">
+        </fieldset>
       </form>
     </div>
   </section>
 
-  <aside class="hide">
+  <aside style="display:none;">
     <a href="#"><button>Home</button></a>
     <a href="consumers/list/CustomerList.html"><button>Customer List</button></a>
     <a href="developers/projects/ProjectList.html"><button>Project List</button></a>
     <a href="map/SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
   </aside>
   
-  <section class="home hide">
+  <section class="home" style="display:none;">
     <h4><em>Connecting people with community solar</em></h4>
     <p>Whether you are a homeowner, renter, or a business, you can save money by switching to solar without having to own any equipment.</p>
 

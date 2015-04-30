@@ -11,43 +11,77 @@ html, body, section {
 	height: 100%;
 }
 
-/*Utility Classes*/
-
-.hide {
-	display: none;
+section {
+	position: relative;
+	z-index: -1;
 }
 
-/*Body*/
+
+/* App styles */
 body {
 	font-family: 'Dosis', sans-serif;
 }
+
+a {
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover, a:visited:hover {
+	cursor: pointer;
+	color: white;
+} 
+
+a:visited {
+	color: black;
+}
+
 /*Header*/
 
 header {
 	border-bottom: 2px solid darkorange;
 	background: rgba(255,252,243,0.4);
+	background: transparent;
 	font-size: 20px;
-	padding: 40px 30px;
-	position: absolute;
+	height: 12%;
+	position: fixed;
 	left: 0;
 	right: 0;
+	z-index: 1;
 }
 
-header {
+/*.main-nav,*/
+.portal {
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(164,191,219,0.6)), color-stop(51%,rgba(78,147,216,0.6)), color-stop(100%,rgba(164,191,219,1))); /* Chrome,Safari4+ */
 	background: -moz-linear-gradient(-45deg, rgba(164,191,219,0.6) 0%, rgba(78,147,216,0.6) 51%, rgba(164,191,219,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(164,191,219,0.6)), color-stop(51%,rgba(78,147,216,0.6)), color-stop(100%,rgba(164,191,219,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(-45deg, rgba(164,191,219,0.6) 0%,rgba(78,147,216,0.6) 51%,rgba(164,191,219,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(-45deg, rgba(164,191,219,0.6) 0%,rgba(78,147,216,0.6) 51%,rgba(164,191,219,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(-45deg, rgba(164,191,219,0.6) 0%,rgba(78,147,216,0.6) 51%,rgba(164,191,219,1) 100%); /* IE10+ */
-background: linear-gradient(135deg, rgba(164,191,219,0.6) 0%,rgba(78,147,216,0.6) 51%,rgba(164,191,219,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99a4bfdb', endColorstr='#a4bfdb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background: -webkit-linear-gradient(-45deg, rgba(164,191,219,0.6) 0%,rgba(78,147,216,0.6) 51%,rgba(164,191,219,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg, rgba(164,191,219,0.6) 0%,rgba(78,147,216,0.6) 51%,rgba(164,191,219,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg, rgba(164,191,219,0.6) 0%,rgba(78,147,216,0.6) 51%,rgba(164,191,219,1) 100%); /* IE10+ */
+	background: linear-gradient(135deg, rgba(164,191,219,0.6) 0%,rgba(78,147,216,0.6) 51%,rgba(164,191,219,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99a4bfdb', endColorstr='#a4bfdb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.menu-button, .sign-up {
+	background: -moz-linear-gradient(180deg, rgba(255, 140, 0, 0.8) 0%, rgba(255, 140, 0, 0.8) 44%, rgba(237, 218, 70, 0.8) 100%);
+	background: -webkit-linear-gradient(180deg, rgba(255, 140, 0, 0.8) 0%, rgba(255, 140, 0, 0.8) 44%, rgba(237, 218, 70, 0.8) 100%);
+	background: -o-linear-gradient(180deg, rgba(255, 140, 0, 0.8) 0%, rgba(255, 140, 0, 0.8) 44%, rgba(237, 218, 70, 0.8) 100%);
+	background: -ms-linear-gradient(180deg, rgba(255, 140, 0, 0.8) 0%, rgba(255, 140, 0, 0.8) 44%, rgba(237, 218, 70, 0.8) 100%);
+	background: linear-gradient(180deg, rgba(255, 140, 0, 0.8) 0%, rgba(255, 140, 0, 0.8) 44%, rgba(237, 218, 70, 0.8) 100%);
 }
 
 header .container {
 	position: relative;
+	top: 50%;
+	margin: 0 2%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 
-.menu, .logo, .entry-buttons {
+.logo, .entry-buttons {
 	position: absolute;
 	top: 50%;
 	-moz-transform: translateY(-50%);
@@ -56,8 +90,18 @@ header .container {
 	transform: translateY(-50%);
 }
 
-.menu {
-	left: 0;
+.menu-button {
+	position: absolute;
+	left: 100%;
+	top: 50%;
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	border: 2px solid darkorange;
+	padding: 23% 4% 23% 4%;
+	border-radius: 0px 50px 50px 0px;
 }
 
 .logo {
@@ -83,7 +127,7 @@ header .container {
 	margin: 3px;
 }
 
-.menu:hover, .entry-buttons *:hover {
+.menu-button:hover, .entry-buttons *:hover {
 	cursor: pointer;
 }
 
@@ -92,19 +136,78 @@ header .container {
 	border: 1px solid darkorange;
 }
 
+/*Sidebar Nav*/
+
+.main-nav {
+	border-right: 2px solid darkorange;
+	width: 20%;
+	height: 100%;
+	position: fixed;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.main-nav ul {
+	height: 88%;
+	position: relative;
+	top: 12%;
+}
+
+.main-nav li {
+	padding: 10%;
+}
+
+.main-nav li:first-child {
+	padding-top: 20%;
+}
+
+.main-nav a {
+	display: block;
+	text-align: center;
+}
+
+.see-menu {
+	left: 0;
+	-webkit-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+}
+
+.hide-menu {
+	left: -20%;
+	-webkit-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+}
+
+/*welcome*/
+
+#welcome {
+	background: url("images/woman.jpg");
+	background-size: cover;
+}
+
+/*	Community Solar   */
+
+#community-solar {
+	background: url("images/solar-cells.jpg");
+	background-size: cover;
+}
+
 /*  Log In/Sign Up  */
 
-.log-in {
+#log-in {
 	background: url("images/background.jpg");
 	background-size: cover;
+	position: relative;
 }
 
 .portal {
 	width: 40%;
-	height: 60%;
+	height: 75%;
 	border: 2px solid darkorange;
 	position: absolute;
-	top: 30%;
+	top: 20%;
 	right: 10%;
 	background: rgba(255,252,243,0.4);
 }
@@ -117,12 +220,20 @@ header .container {
 	left: 10%;
 }
 
-fieldset label {
+.new-user-fieldset {
+	height: 10%;
+}
+
+.new-user-fieldset label {
 	width: 49%;
 	display: inline-block;
 }
 
-fieldset input {
+label.terms-checkbox {
+	display: none;
+}
+
+.new-user-fieldset input {
 	display: inline-block;
 	width: initial;
 	height: initial;
@@ -130,12 +241,17 @@ fieldset input {
 	margin: 0;
 }
 
-fieldset span {
+.new-user-fieldset span {
 	vertical-align: middle;
+	margin: 0 3%;
 }
 
-.terms-checkbox {
-	display: none;
+.new-user-fieldset a {
+	color: #00e;
+	text-decoration: underline;
+}
+.main-fieldset {
+	height: 90%;
 }
 
 input {
@@ -161,3 +277,19 @@ input::-moz-placeholder {
 input:-ms-input-placeholder {
   line-height: 130%;
 }
+
+.password-confirm {
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
