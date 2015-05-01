@@ -1,27 +1,24 @@
 <!doctype html>
 <head>
+  <meta charset="utf-8">
+
+  <title>Add Project</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
   <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>  
   <link rel="stylesheet" href="../../css/reset.css">
   <link rel="stylesheet" href="../../css/styles.css">
-
-  <title>Add Project</title>
-
-  <meta name="description" content="My Parse App">
-  <meta name="viewport" content="width=device-width">
-  <meta charset="utf-8">
-  
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-  <script src="../../lib/parse-data.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
 </head>
 
 <body>
   <header>
     <h1>Add Project</h1>
-    <a href="../../index.html"><button>Home</button></a>
-    <a href="../consumers/list/CustomerList.html"><button>Customer List</button></a>
-    <a href="../projects/ProjectList.html"><button>Project List</button></a>
-    <a href="../map/SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
+    <a href="../index.html"><button>Home</button></a>
+    <a href="CustomerList.html"><button>Customer List</button></a>
+    <a href="ProjectList.html"><button>Project List</button></a>
+    <a href="SolarProjectsMap.html" class="mapIt"><button>Map</button></a>
   </header>  
   <div class="main">
     <p>Let us know about your project and we will connect you with local consumers.</p>
@@ -32,7 +29,7 @@
       <label>County: <input type="text" id="county"></label>
       <label>Utility: <input type="text" id="utility"></label>
       <label>kwH: <input type="text" id="kwh"></label>
-      <label><input type="submit" id="submit" value="submit"></label>
+      <label><input type="button" id="submit" value="submit"></label>
     </form>
 
     <div style="display:none" class="error">
@@ -44,6 +41,32 @@
     </div>
   </div>
 
+  <script type="text/javascript">
+    $("#submit")[0].addEventListener("click", submitSolarProject);
+    
+    function submitSolarProject() {
+      Parse.initialize("KMXJi39L5mHkKU0RGNmqX2xvV3N8xfD6xht4ZeyJ", "XWCUCmyNphIpRGK0KcwNuVv2XbC2QVcZvtfpm3SS");
+
+      var SolarProject = Parse.Object.extend("SolarProject");
+      var solarProject = new SolarProject();
+      solarProject.set("name", $("#name").val());
+      solarProject.set("size", $("#size").val());
+      solarProject.set("address", $("#address").val());
+      solarProject.set("county", $("#county").val());
+      solarProject.set("utility", $("#utility").val());
+      solarProject.set("kwh", $("#kwh").val());
+
+      solarProject.save(null, {
+      success: function(customer) {
+        $(".success").show();
+        $("#submitSolarProject")[0].reset();
+      },
+      error: function(customer, error) {
+        $(".error").show();
+      }
+      });
+    }
+  </script>
 </body>
 
 </html>
