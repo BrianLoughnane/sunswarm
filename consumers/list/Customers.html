@@ -1,0 +1,43 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>SunSwarm</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+
+  <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>  
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+  <script src="lib/underscore.js"></script>
+  <script src="../../lib/authenticate.js"></script>
+  <script> 
+    //parse init. Required on every page
+    Parse.initialize("6RtxBdZ9kAwcFGy4SKJpeaCQIiuGCMOG4mabhYLc", "qcFP0tnQSgiXhAZeFchVn5fDZyIB5Kxfg8kkXjvw");
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <span class="logo">SunSwarm</span>
+      <div class="entry-buttons">
+        <a class="top log-in">Log In</a>
+        <a class="sign-up log-in colors">Sign Up</a>
+        <a class="log-out">Log Out</a>
+      </div>
+    </div>  
+  </header>
+
+  <nav class="main-nav hide-menu">
+    <img class="menu-button colors" src="../../images/menu.png">
+    <ul>
+      <li><a>About Sunswarm</a></li>
+      <li><a>Why Community Solar?</a></li>
+      <li><a class="log-in">Log In / Sign Up</a></li>
+    </ul>
+  </nav>
+</body>
+
+</html>
