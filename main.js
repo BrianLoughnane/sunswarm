@@ -52,8 +52,10 @@ $(window).load(function() {
 
 	$('.sign-up').on('click', function() {
 		var checkbox = $('.new-user-checkbox');
+		var iWantField = $('.main-fieldset .user-type');
 		if(checkbox.attr('checked') !== 'checked') {
 		  checkbox.click();
+		  iWantField.show();
 		}
 	});
 
@@ -70,6 +72,8 @@ $(window).load(function() {
 	$('.new-user-checkbox').on('click', function() {
 		$('.terms-checkbox').fadeToggle('fast');
 		$('.password-confirm').slideToggle('fast');
+		$('.main-fieldset .user-type').slideToggle('fast');
+	
 	});
 
 	//user auth
@@ -77,17 +81,18 @@ $(window).load(function() {
     $(".entry-buttons .log-out").on("click", logOut);
     
     function auth() {
-    	debugger
+
     	var newUserCheckbox = $('.new-user-checkbox');
     	var termsCheckbox = $('.terms-checkbox input');
 
     	if(newUserCheckbox.attr('checked') === 'checked') {
     		var password = $('#password').val();
 			var confirmPassword = $('#confirmPassword').val();
+			var type = $('.main-fieldset .user-type').val();
 
 			if(termsCheckbox.attr('checked') === 'checked') {
 				if(password === confirmPassword) {
-	    			signUp($("#email").val(), password);
+	    			signUp($("#email").val(), password, type);
 	    		} else {
 	    			$('.error').text("Passwords must match");
 	    			$('.error').show();
@@ -98,16 +103,17 @@ $(window).load(function() {
     	}
     }
     
-    function signUp(email, password) {
+    function signUp(email, password, type) {
 		
 		var user = new Parse.User();
 		user.set("username", email);
 		user.set("password", password);
 		user.set("email", email);
+		user.set("type", type);
 
 		user.signUp(null, {
 			success: function(user) {
-				window.location.replace("home.html");
+				window.location.replace("account.html");
 			},
 			error: function(user, error) {
 				// Show the error message somewhere and let the user try again.
@@ -122,7 +128,7 @@ $(window).load(function() {
 	function signIn(email, password) {
 		Parse.User.logIn(email, password, {
 			success: function(user) {
-				window.location.replace("home.html");
+				window.location.replace("account.html");
 			},
 			error: function(user, error) {
 				//alert("Error: " + error.code + " " + error.message);
