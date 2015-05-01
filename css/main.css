@@ -315,7 +315,7 @@ p {
 	position: relative;
 }
 
-.portal .login-form {
+.portal .form {
 	font-size: initial;
 	width: 80%;
 	height: 80%;
@@ -387,14 +387,42 @@ input:-ms-input-placeholder {
 }
 
 
-/*Submit Info*/
+/*   	Dashboard    	*/
 
-.submit-info {
+.dashboard {
 	background: lightblue;
 }
 
+.dashboard section {
+	z-index: 0;
+}
 
+.dashboard .portal {
+	left: 30%;
+	height: initial;
+}
 
+.form.enter-info {
+	margin: 20px auto;
+	margin-top: 40px;
+	position: static;
+}
+
+.close-portal {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	color: darkorange;
+	font-size: 32px;
+}
+
+.close-portal:hover {
+	cursor: pointer;
+}
+
+.enter-info input {
+	height: 60px;
+}
 
 
 
