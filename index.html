@@ -13,7 +13,6 @@
   <script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
   <script src="lib/underscore.js"></script>
   <script src="main.js"></script>
-  <script src="home.js"></script>
   <script> 
     //parse init. Required on every page
     Parse.initialize("6RtxBdZ9kAwcFGy4SKJpeaCQIiuGCMOG4mabhYLc", "qcFP0tnQSgiXhAZeFchVn5fDZyIB5Kxfg8kkXjvw");
@@ -68,7 +67,7 @@
 
   <section id="log-in">
     <div class="portal">
-      <div>
+      <div class="login-form">
         <fieldset class="new-user-fieldset">
           <label><input type="checkbox" class="new-user-checkbox"><span>Create an Account!</span></label>
           <label class="terms-checkbox"><input type="checkbox"><span>I agree to the <a>terms</a></span></label>
@@ -77,7 +76,7 @@
           <input id="email" type="email" class="email" placeholder="Email*">
           <input id="password" type="password" class="password" placeholder="Password*">
           <input id="confirmPassword" type="password" class="password-confirm" placeholder="Confirm Password*">
-          <button id="submit" type="submit" class="submit" value="Enter">
+          <input id="submit" type="submit" class="submit" value="Enter">
           <div style="display:none" class="error">
               There was a problem logging in or signing up. Please try again.
           </div>

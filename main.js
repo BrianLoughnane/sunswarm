@@ -77,7 +77,7 @@ $(window).load(function() {
     $(".entry-buttons .log-out").on("click", logOut);
     
     function auth() {
-
+    	debugger
     	var newUserCheckbox = $('.new-user-checkbox');
     	var termsCheckbox = $('.terms-checkbox input');
 
