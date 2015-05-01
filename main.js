@@ -33,9 +33,9 @@ $(document).on('ready', function() {
 
 		if (scrollTop <= 85) {
 			return
-		} else if(scrollTop > lastScrollTop) {
+		} else if(scrollTop > lastScrollTop + 10) {
 			$('header').slideUp();
-		} else {
+		} else if(scrollTop < lastScrollTop - 10) {
 			$('header').slideDown();
 		}
 
