@@ -52,8 +52,10 @@ $(window).load(function() {
 
 	$('.sign-up').on('click', function() {
 		var checkbox = $('.new-user-checkbox');
+		var iWantField = $('.main-fieldset .user-type');
 		if(checkbox.attr('checked') !== 'checked') {
 		  checkbox.click();
+		  iWantField.show();
 		}
 	});
 
@@ -70,6 +72,8 @@ $(window).load(function() {
 	$('.new-user-checkbox').on('click', function() {
 		$('.terms-checkbox').fadeToggle('fast');
 		$('.password-confirm').slideToggle('fast');
+		$('.main-fieldset .user-type').slideToggle('fast');
+	
 	});
 
 	//user auth
