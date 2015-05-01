@@ -387,6 +387,11 @@ input:-ms-input-placeholder {
 }
 
 
+/*Submit Info*/
+
+.submit-info {
+	background: lightblue;
+}
 
 
 
