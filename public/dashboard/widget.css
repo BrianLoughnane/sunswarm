@@ -1,0 +1,16 @@
+@media (max-width: 767px) {
+  html body button[type=submit] {
+    font-size: 11.2px;
+  }
+}
+html body #pge_find_info {
+  background: #f9f8f7;
+  padding: 1ex 1em;
+  margin-bottom: 2ex;
+  border-radius: .5ex;
+  border: 1px solid #e5e4dc;
+}
+html body #pge_bill_modal .modal-body img#pge_bill_image {
+  max-width: 100%;
+  border-bottom: 1px solid #bfb7ba;
+}

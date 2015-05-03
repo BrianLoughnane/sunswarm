@@ -1,0 +1,192 @@
+
+
+
+<!doctype html>
+<html>
+<head>
+    <title>Add a Utility Account (powered by UtilityAPI</title>
+    <meta charset="UTF-8">        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
+    <link rel="stylesheet" href="widget.css"/>    
+    <link rel="stylesheet" href="../css/main.css"/>    
+</head>
+<body class="">
+    <div class="container">
+        <div class="center-block" style="max-width: 600px; padding-top:2ex; padding-bottom:2ex;">
+            <div class="clearfix">
+                <p>
+                    <img style="max-width:300px; max-height:100px;" id="widget-logo" src="https://utilityapi.com/api/tokens/d2f9ffb1/logo.png?cachebreaker=855c22820dea403ba35d97f26b2bbf52"/>
+                </p>
+            </div>
+            <div class="clearfix">
+                <p class="buffer-top-sm buffer-bottom-sm">
+                    Complete this form to securely share your utility bill and usage data with:
+                </p>
+                <ul>
+                    <li>Sunswarm</li>
+                </ul>
+                <form class="ws-validate" id="add-form" method="post" autocomplete="off">
+                    <div id="div_id_email" class="form-group">
+                        <label for="id_email" class="control-label  requiredField">
+                        Email<span class="asteriskField">*</span></label>
+                        <div class="controls ">
+                            <input autocomplete="off"
+                                   class="emailinput form-control"
+                                   id="id_email" name="email"
+                                   placeholder="ex. johndoe@example.com"
+                                   required="True" type="email"
+                                   value=""
+                                    />
+                        </div>
+                    </div>
+                    
+                    <div id="div_id_utility" class="form-group">
+                        <label for="id_utility" class="control-label  requiredField">
+                        Utility<span class="asteriskField">*</span></label>
+                        <div class="controls ">
+                            <select class="select form-control" id="id_utility" name="utility" required="True">
+                                <option value="" selected="selected">Please select your utility</option>
+                                
+                                <option value="PG&E">Pacific Gas and Electric (PG&E)</option>
+                                <option value="SCE">Southern California Edison (SCE)</option>
+                                <option value="SDG&E">San Diego Gas and Electric (SDG&E)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="login_registration_choice" style="display: none;" class="buffer-bottom-md text-right">
+                        <a style="display: none;" id="choose_login_credentials" href="#">&lt; I know my <span class="utility_name">utility</span> login information</a>
+                        <a id="choose_auto_registration" href="#">I don't know my <span class="utility_name">utility</span> login information &gt;</a>
+                    </div>
+                    <div id="pge_auto_registration_container" style="display: none;">
+                        
+                        
+
+<div id="pge_find_info">
+    Tip: <a href="javascript:void(0);" data-toggle="modal" data-target="#pge_bill_modal">Use an old bill to find this information</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="pge_bill_modal" tabindex="-1" role="dialog"
+         aria-labelledby="pge_bill_modal_label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="pge_bill_modal_label">Getting information from a PG&E bill</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="buffer-bottom-lg">
+                        <img id="pge_bill_image" src="/static/media/images/graphics/auto-reg/pgebill.jpg" alt=""/>
+                    </div>
+                    <p>
+                        The account number is in the top right corner of every page of the bill, but the meter number is on page 3.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                        
+
+<div class="form-group"><div id="div_id_use_pge_registration_form" class="checkbox"><label for="id_use_pge_registration_form" class=""><input class="checkboxinput checkbox" id="id_use_pge_registration_form" name="use_pge_registration_form" type="checkbox" />
+                    Use pge registration form
+                    
+
+
+    
+
+
+
+
+    
+
+
+
+                </label></div></div><div id="div_id_pge_first_name" class="form-group"><label for="id_pge_first_name" class="control-label  requiredField">
+				First name or company name<span class="asteriskField">*</span></label><div class="controls "><input class="textinput textInput form-control" id="id_pge_first_name" maxlength="40" name="pge_first_name" type="text" /> </div></div><div id="div_id_pge_last_name" class="form-group"><label for="id_pge_last_name" class="control-label  requiredField">
+				Last name or company name<span class="asteriskField">*</span></label><div class="controls "><input class="textinput textInput form-control" id="id_pge_last_name" maxlength="40" name="pge_last_name" type="text" /> </div></div><div id="div_id_pge_account_number" class="form-group"><label for="id_pge_account_number" class="control-label  requiredField">
+				PG&E account number<span class="asteriskField">*</span></label><div class="controls "><input class="textinput textInput form-control" id="id_pge_account_number" maxlength="12" minlength="12" name="pge_account_number" type="text" /> <p id="hint_id_pge_account_number" class="help-block">Full PG&E account number. </p></div></div><div id="div_id_pge_phone_number" class="form-group"><label for="id_pge_phone_number" class="control-label  requiredField">
+				PG&E phone number<span class="asteriskField">*</span></label><div class="controls "><input class="textinput textInput form-control" id="id_pge_phone_number" maxlength="14" name="pge_phone_number" type="text" /> <p id="hint_id_pge_phone_number" class="help-block">The phone number associated with the PG&E account.</p></div></div><div id="div_id_pge_meter_number" class="form-group"><label for="id_pge_meter_number" class="control-label  requiredField">
+				PG&E meter number<span class="asteriskField">*</span></label><div class="controls "><input class="textinput textInput form-control" id="id_pge_meter_number" maxlength="14" name="pge_meter_number" type="text" /> <p id="hint_id_pge_meter_number" class="help-block">For commercial, enter 1 meter associated with the account.</p></div></div>
+
+                    </div>
+                    <div id="utility_credentials_container">
+                        
+                        
+                        <div id="div_id_utility_username" class="form-group">
+                            <label for="id_utility_username" class="control-label  requiredField">
+                            Utility username<span class="asteriskField">*</span></label>
+                            <div class="controls ">
+                                <input autocomplete="off"
+                                       class="textinput textInput form-control"
+                                       id="id_utility_username"
+                                       name="utility_username"
+                                       value=""
+                                       required="True"
+                                       type="text" />
+                                <p id="hint_id_utility_username" class="help-block">The username you use to log in to your utility's website.</p>
+                            </div>
+                        </div>
+                        <div id="div_id_utility_password" class="form-group">
+                            <label for="id_utility_password" class="control-label  requiredField">
+                            Utility password<span class="asteriskField">*</span></label>
+                            <div class="controls ">
+                                <input autocomplete="off" class="textinput textInput form-control"
+                                       id="id_utility_password" name="utility_password" required="True"
+                                       type="password"
+                                        />
+                                <p id="hint_id_utility_password" class="help-block">The password you use to log in to your utility's website.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div id="div_id_real_name" class="form-group">
+                        <label for="id_real_name" class="control-label  requiredField">Digital Signature<span class="asteriskField">*</span></label>
+                        <div class="controls">
+                            I, <input class="textinput textInput "
+                                      type="text"
+                                      placeholder="Full Name"
+                                      id="id_real_name"
+                                      name="real_name"
+                                      required="True"
+                                      autocomplete="off"
+                                      value=""
+                                />,
+                            am the owner of this utility account, and I authorize
+                            
+                                <u><a href="mailto:devbrian1@gmail.com">devbrian1@gmail.com</a></u> and
+                            
+                            UtilityAPI, Inc. to access this account to collect bill and usage data according to the <a href="/terms.html" target="_blank">Terms of Service</a>.
+                            This data will not be shared with any other third party.
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary" style="margin-top:2ex; margin-bottom:2ex;">
+                        <span class="glyphicon glyphicon-lock"></span> Securely Share My Utility Data
+                        </button>
+                    </div>
+                    <input type="hidden" name="auth_type" value="owner"/>
+                </form>
+            </div>
+            <div class="text-center">
+                <p id="tagline">powered by <a href="https://utilityapi.com/" target="_blank">UtilityAPI</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!--     <script src="/static/third_party/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/third_party/webshim-1.15.6-RC1/js-webshim/minified/polyfiller.js"></script>
+    <script src="/static/js/uapi_webshim_forms.js"></script> -->
+    <script src="/static/third_party/momentjs/moment.min.js"></script>
+    <script src="widget.js"></script>
+
+</body>
+</html>

@@ -6,7 +6,7 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000))
 // app.use(express.static(__dirname + '/index.html'));
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/public/'));
 
 var token = 'access_token=0c558c78af3f4e219e19f73440714b0d';
 var apiUrl = "https://utilityapi.com/api/";
@@ -40,15 +40,25 @@ app.get('/submitUtilityApiInfo/:utilityCode/:signature/:username/:password', fun
 	).pipe(res);
 });
 
+app.get('/getServices', function (req, res) {
+	request('https://utilityapi.com/api/services.json?'+token).pipe(res);
+});
 
 app.get('/activate/:uid', function(req, res) {    
     var uid = req.params.uid;
 
-    request.post('https://utilityapi.com/api/accounts/'+ uid + '/modify.json?'+token,
+    var d = new Date();
+    d.setDate(d.getDate() +1);
+    d = new Date(d);
+
+    // request.post('https://utilityapi.com/api/accounts/'+ uid + '/modify.json?'+token,
+    // request.post('https://utilityapi.com/api/services/'+ uid + '/modify.json?'+token,
+    request.post('https://utilityapi.com/api/services/'+ uid +'/modify.json?'+token,
     	{
     		form: {
 		    	'active_until' : 'now',
-		    	'update_data' : 'true'
+		    	// 'active_until' : d,
+		    	'update_data' : true
 		    }
     	},
     	function (error, response, body) {
@@ -59,35 +69,32 @@ app.get('/activate/:uid', function(req, res) {
     ).pipe(res);
 });
 
+
 app.get('/pollBillingEndpoint/:uid', function (req, res) {
 	var uid = req.params.uid;
-
 	var updated = false;
-
+	var requ;
 	var poll = setInterval(function() {
+		console.log('polling...');
 		if(updated) {
-			debugger
-			console.log('closing poll')
+			console.log('All updated, closing poll')
 			clearInterval(poll);
+			console.log('Poll is closed')
 			return
 		} else {
-			// request('https://utilityapi.com/api/services/'+ uid + '/bills.json?'+token, function (error, response, body) {
-			var r = request('https://utilityapi.com/api/services/'+ 5574 + '/bills.json?'+token, function (error, response, body) {
+			console.log('Not updated, about to make request')
+			request('https://utilityapi.com/api/services/'+ 5574 + '/bills.json?'+token, function (error, response, body) {
+				console.log('request made, checking for error')
 				if(error) {
-					debugger
-					console.log('unsuccessful poll')
+					console.log('error found')
 					return
 				} else if(!error && response.statusCode == 200) {
-					debugger
 					updated = true;
 					console.log('complete', body);
+					res.write(body);
+					res.end();
 				}
-			});
-
-			if(updated) {
-				debugger
-				r.pipe(res);
-			}		
+			});			
 		}
 
 	}, 3000);
