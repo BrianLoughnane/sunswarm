@@ -36,7 +36,7 @@ $(document).on('ready', function() {
 
 		user.signUp(null, {
 			success: function(user) {
-				window.location.replace("Consumers/list/Customers.html");
+				window.location.replace("dashboard/dashboard.html");
 			},
 			error: function(user, error) {
 				// Show the error message somewhere and let the user try again.
@@ -51,7 +51,7 @@ $(document).on('ready', function() {
 	function signIn(email, password) {
 		Parse.User.logIn(email, password, {
 			success: function(user) {
-				window.location.replace("Consumers/list/Customers.html");
+				window.location.replace("dashboard/dashboard.html");
 			},
 			error: function(user, error) {
 				//alert("Error: " + error.code + " " + error.message);
