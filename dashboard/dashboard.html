@@ -12,7 +12,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
   <script src="../lib/underscore.js"></script>
+  <script src="../lib/authenticate.js"></script>
+  <script src="../bower_components/q/q.js"></script>
   <script src="../main.js"></script>
+  <script src="dashboard.js"></script>
   <script> 
     //parse init. Required on every page
     Parse.initialize("6RtxBdZ9kAwcFGy4SKJpeaCQIiuGCMOG4mabhYLc", "qcFP0tnQSgiXhAZeFchVn5fDZyIB5Kxfg8kkXjvw");
@@ -44,11 +47,42 @@
     <div class="portal">
       <span class="close-portal">X</span>
       <div class="form enter-info">
-        <fieldset class="enter-name">
+       <!--  <fieldset class="enter-name">
           <span>Let's get started!</span>
           <input type="text" placeholder="What's your name?" class="input-name">
           <input type="submit" value="Next" class="submit-name">          
         </fieldset>
+        <fieldset class="enter-address hide">
+          <span>Where do you live?</span>
+          <input type="text" placeholder="Street Address" class="input-address">
+          <input type="text" placeholder="City" class="input-city">
+          <input type="text" placeholder="State" class="input-state">
+          <input type="text" placeholder="Zip Code" class="input-zip">
+          <input type="submit" value="Next" class="submit-address">          
+        </fieldset> -->
+        <fieldset class="utility-api-signup">
+          <span>Your current utility</span>
+          <select class="utility-options"></select>      
+          <div class="utility-login">
+            <span>The login username for the utility account</span>
+            <input type="text" class="utility-username" placeholder="Your Utility Account Username">
+            <span>The login password for the utility account</span>
+            <input type="text" class="utility-password" placeholder="Your Utility Account Password">
+            <input type="text" class="utility-signature" placeholder="Your full name">
+            <input type="submit" value="Next" class="submit-utility-info">
+          </div>
+        </fieldset>
+
+        <!-- <fieldset class="enter-name">
+          <span>Let's get started!</span>
+          <input type="text" placeholder="What's your name?" class="input-name">
+          <input type="submit" value="Next" class="submit-name">          
+        </fieldset> -->
+<!--         <fieldset class="enter-name">
+          <span>Let's get started!</span>
+          <input type="text" placeholder="What's your name?" class="input-name">
+          <input type="submit" value="Next" class="submit-name">          
+        </fieldset> -->
       </div>
     </div>
   </section>

@@ -156,6 +156,7 @@ header .container {
 	position: fixed;
 	bottom: 0;
 	background: rgba(255, 255, 255, 0.5);
+	z-index: 1;
 }
 
 .main-nav ul {
@@ -424,9 +425,16 @@ input:-ms-input-placeholder {
 	height: 60px;
 }
 
+.enter-address {
+	display: none;
+}
 
 
+/*Utility API login*/
 
+/*.utility-api-signup, .utility-login {
+	display: none;
+}*/
 
 
 
