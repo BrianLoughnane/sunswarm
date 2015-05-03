@@ -6,7 +6,7 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000))
 // app.use(express.static(__dirname + '/index.html'));
-app.use(express.static(__dirname + '/public/'));
+app.use(express.static(__dirname + '/public'));
 
 var token = 'access_token=0c558c78af3f4e219e19f73440714b0d';
 var apiUrl = "https://utilityapi.com/api/";
@@ -121,4 +121,4 @@ app.get('/pollBillingEndpoint/:uid', function (req, res) {
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'));
-})
+});
