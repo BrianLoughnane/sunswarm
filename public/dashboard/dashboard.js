@@ -72,9 +72,33 @@ $(document).on('ready', function() {
 
 	var harvestBillingData = function (bills) {
 		// where bills is the u_  /services/<services uid>/bills endpoint for the newly created user
+		bills = bills.split("$").join("");  //parse cannot handle $
+		utilBills = JSON.parse(bills);
 
-		var bills = JSON.parse(bills);
-		debugger
+		var Bill = Parse.Object.extend("Bill");
+		var billsToSave = [];
+
+		_.each(utilBills, function(utilBill) {
+			var bill = new Bill();
+			for(var key in utilBill) {	//save all key/value from utilityAPI to Parse
+				bill.set(key, utilBill[key]);
+			}
+			billsToSave.push(bill);
+			bill.set("customer", Parse.User.current());
+		});
+
+		// save all the newly created objects
+	    Parse.Object.saveAll(billsToSave, {
+	        success: function(objs) {
+	            // objects have been saved...
+	            alert("successly loaded bills into parse");
+	        },
+	        error: function(error) { 
+	            // an error occurred...
+	            alert("failure" + error.message);
+	        }
+	    });
+
 	}
 
 	$.ajax('../createUtilityApiAccount')
@@ -120,8 +144,27 @@ $(document).on('ready', function() {
 		info.city = $('.input-city').val();
 		info.state = $('.input-state').val();
 		info.zip = $('.input-zip').val();
-		
+
 		$('.enter-address').hide();
 		$('.utility-api-signup').show();
+
+		//save to parse
+		var Address = Parse.Object.extend("Address");
+		var address = new Address();
+
+		address.set("address", info.address);
+		address.set("city", info.city);
+		address.set("state", info.state);
+		address.set("zip", info.zip);
+		address.set("customer", Parse.User.current());
+
+		address.save(null, {
+	        success: function(customer) {
+	        	alert("Address Saved");
+	        },
+	        error: function(customer, error) {
+	          	alert("Address not saved");
+	        }
+	    });
 	});
 });
