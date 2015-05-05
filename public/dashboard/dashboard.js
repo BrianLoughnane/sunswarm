@@ -1,4 +1,5 @@
 $(document).on('ready', function() {
+	// u_ --> utility API
 
 	var info = {};
 
@@ -10,14 +11,17 @@ $(document).on('ready', function() {
 		});
 	}
 
-	var copyAccountInfo = function (account) {
+	var harvestAccountInfo = function (account) {
+		// where account is the u_ account endpoint for the newly created user
 		info.u_account_uid = account.uid;
-		info.u_user_uid = account.user_uid;
-		info.u_service_uid = account.service_uid;
-		
+		info.u_user_uid = account.user_uid;		
 	}
 
 	var wait = function () {
+		// WAIT
+		// This is for demo purposes and can be removed for production
+		// getServicesUid polls the services endpoint and maps the user's u_service_uid based on their u_user_id
+		// Seeing as the demo accounts are all assigned the same user uid, the wait is inserted to ensure the latest account is accessed (not the previous which has the same user uid) 
 		var p = new Promise(function (resolve, reject) {
 			setTimeout(function () {
 				resolve(true);
@@ -26,33 +30,50 @@ $(document).on('ready', function() {
 		return p;
 	}
 
-	var getServicesUid = function() {
-		var userId = info.u_user_uid;
+	var getServicesUid = function () {
+		return $.ajax('../getServicesUid/'+ info.u_user_uid);
+	}
 
-		return $.ajax('../getServices')
-			.then(function (services) {
-
-				for(var i = 0; i < services.length; i++) {
-					if(services[i].user_uid === userId) {
-						info.u_service_uid = services[i].uid;
-						return;
-					}
-				}					
-
-			});
+	var storeServicesUid = function(id) {
+		debugger
+		info.u_service_uid = +id;
 	}
 
 	var activateAccount = function() {
 		return $.ajax('../activate/'+info.u_service_uid);
 	}
 
+
+	// var pollEndpoint = function (uid, endpoint) {
+	// 	debugger
+	// 	return function () {
+	// 		debugger
+	// 		return $.ajax('../pollEndpoint/'+uid+'/'+endpoint);			
+	// 	}
+	// }
+
+	var pollIntervalEndpoint = function () {
+		return $.ajax('../pollIntervalEndpoint/'+ info.u_service_uid);
+	}
+
+	var harvestIntervalData = function (intervals) {
+		// where intervals is the u_  /services/<services uid>/intervals endpoint for the newly created user
+
+		// ** build up interval data object for genability here **
+		var intervals = JSON.parse(intervals);
+		info.u_utility_tariff_name = intervals[0].utility_tariff_name;
+
+		debugger
+	}
+
 	var pollBillingEndpoint = function () {
-		return $.ajax('../pollBillingEndpoint/'+info.u_account_uid);
+		return $.ajax('../pollBillingEndpoint/'+info.u_service_uid);
 	}
 
 	var harvestBillingData = function (bills) {
-		var str = 234;
+		// where bills is the u_  /services/<services uid>/bills endpoint for the newly created user
 
+		var bills = JSON.parse(bills);
 		debugger
 	}
 
@@ -75,10 +96,14 @@ $(document).on('ready', function() {
 
 		var submitEndpoint = '../submitUtilityApiInfo/'+utilityCode+'/'+info.signature+'/'+info.utility_username+'/'+info.utility_password;
 		Q($.ajax(submitEndpoint))	
-			.then(copyAccountInfo)
+			.then(harvestAccountInfo)
 			.then(wait)
 			.then(getServicesUid)
+			.then(storeServicesUid)
 			.then(activateAccount)
+			.then(wait)
+			.then(pollIntervalEndpoint)
+			.then(harvestIntervalData)
 			.then(pollBillingEndpoint)
 			.then(harvestBillingData)
 	});
