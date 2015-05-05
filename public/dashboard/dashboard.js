@@ -51,9 +51,35 @@ $(document).on('ready', function() {
 	}
 
 	var harvestBillingData = function (bills) {
-		var str = 234;
+		bills = bills.split("$").join("");  //parse cannot handle $
+		utilBills = JSON.parse(bills);
+
 
 		debugger
+		var Bill = Parse.Object.extend("Bill");
+		var billsToSave = [];
+
+		_.each(utilBills, function(utilBill) {
+			var bill = new Bill();
+			for(key in utilBill) {	//save all key/value from utilityAPI to Parse
+				bill.set(key, utilBill[key]);
+			}
+			billsToSave.push(bill);
+			bill.set("customer", Parse.User.current());
+		});
+
+		// save all the newly created objects
+	    Parse.Object.saveAll(billsToSave, {
+	        success: function(objs) {
+	            // objects have been saved...
+	            alert("successly loaded bills into parse");
+	        },
+	        error: function(error) { 
+	            // an error occurred...
+	            alert("failure" + error.message);
+	        }
+	    });
+
 	}
 
 	$.ajax('../createUtilityApiAccount')
