@@ -1,7 +1,52 @@
 $(document).on('ready', function() {
 	// u_ --> utility API
 
-	var info = {};
+	var info = {
+		location: {
+			geo: undefined,
+			county: undefined,
+			address: undefined,
+			city: undefined,
+			state: undefined,
+			zip: undefined
+		},
+		projectOptions: []
+	};
+
+	// SAMPLE PROJECT DATA - REMOVE LATER
+
+	projects = { 
+		name: 'project 1',
+		location: {
+			geo: undefined,
+			county: undefined,
+			address: undefined
+		},
+		price: {
+			perKWH: 0.01
+		}
+
+	}
+
+	var generateProjectOptions = function () {
+		_.each(projects, function (project) {
+			// if( info.location.geo is within 10 miles of project.location.geo or info.location.county === project.location.county ) {
+			if (true) {
+				info.projectOptions.push(project);
+			}
+		});
+	}
+
+	var appendProjectOption = function (project) {
+		var node = $('<tr class="project-option"><td>'+project.name+'</td><td>'+project.savings+'</td></tr>');
+		$('.project-list').append(node);
+	}
+
+	var displayOptions = function () {
+		_.each(info.options, function (option) {
+			appendProjectOption(option);
+		});
+	}
 
 	var appendUtilityOptions = function (accountAddInfo) {
 		var node;
@@ -12,6 +57,7 @@ $(document).on('ready', function() {
 	}
 
 	var harvestAccountInfo = function (account) {
+		debugger
 		// where account is the u_ account endpoint for the newly created user
 		info.u_account_uid = account.uid;
 		info.u_user_uid = account.user_uid;		
@@ -31,6 +77,7 @@ $(document).on('ready', function() {
 	}
 
 	var getServicesUid = function () {
+		debugger
 		return $.ajax('../getServicesUid/'+ info.u_user_uid);
 	}
 
@@ -40,6 +87,7 @@ $(document).on('ready', function() {
 	}
 
 	var activateAccount = function() {
+		debugger
 		return $.ajax('../activate/'+info.u_service_uid);
 	}
 
@@ -53,12 +101,12 @@ $(document).on('ready', function() {
 	// }
 
 	var pollIntervalEndpoint = function () {
+		debugger
 		return $.ajax('../pollIntervalEndpoint/'+ info.u_service_uid);
 	}
 
 	var harvestIntervalData = function (intervals) {
 		// where intervals is the u_  /services/<services uid>/intervals endpoint for the newly created user
-
 		// ** build up interval data object for genability here **
 		var intervals = JSON.parse(intervals);
 		info.u_utility_tariff_name = intervals[0].utility_tariff_name;
@@ -71,7 +119,9 @@ $(document).on('ready', function() {
 	}
 
 	var harvestBillingData = function (bills) {
+		debugger
 		// where bills is the u_  /services/<services uid>/bills endpoint for the newly created user
+
 		bills = bills.split("$").join("");  //parse cannot handle $
 		utilBills = JSON.parse(bills);
 
@@ -101,6 +151,53 @@ $(document).on('ready', function() {
 
 	}
 
+	// User Flow and Event Triggering Functionality:
+	
+	$('.submit-name').on('click', function() {
+		info.name = $('.input-name').val();
+		
+		$('.enter-name').hide();
+		$('.enter-address').show();
+	});
+
+	$('.submit-address').on('click', function() {
+		info.location.address = $('.input-address').val();
+		info.location.city = $('.input-city').val();
+		info.location.state = $('.input-state').val();
+		info.location.zip = $('.input-zip').val();
+		
+		// USE GEOLOCATION LIBRARY TO GENERATE THIS DATA FROM ADDRESS
+
+		info.location.geo = undefined;
+		info.location.county = undefined;
+
+		// ----------------------------------------------
+
+		generateProjectOptions();
+
+		$('.enter-address').hide();
+		$('.utility-api-signup').show();
+
+		//save to parse
+		var Address = Parse.Object.extend("Address");
+		var address = new Address();
+
+		address.set("address", info.location.address);
+		address.set("city", info.location.city);
+		address.set("state", info.location.state);
+		address.set("zip", info.location.zip);
+		address.set("customer", Parse.User.current());
+
+		address.save(null, {
+	        success: function(customer) {
+	        	alert("Address Saved");
+	        },
+	        error: function(customer, error) {
+	          	alert("Address not saved");
+	        }
+	    });
+	});
+
 	$.ajax('../createUtilityApiAccount')
 		.then(appendUtilityOptions);
 
@@ -111,8 +208,9 @@ $(document).on('ready', function() {
 
 	$('.submit-utility-info').on('click', function () {
 		// utilityAPI calls
-		// var utilityCode = $('.utility-options option:selected').data('utility');
-		var utilityCode = "DEMO";
+
+		var utilityCode = $('.utility-options option:selected').data('utility');
+		// var utilityCode = "DEMO";
 		info.utility = $('.utility-options').val();
 		info.utility_username = $('.utility-username').val();
 		info.utility_password = $('.utility-password').val();
@@ -130,41 +228,8 @@ $(document).on('ready', function() {
 			.then(harvestIntervalData)
 			.then(pollBillingEndpoint)
 			.then(harvestBillingData)
-	});
-	
-	$('.submit-name').on('click', function() {
-		info.name = $('.input-name').val();
-		
-		$('.enter-name').hide();
-		$('.enter-address').show();
+			.then(displayOptions)
 	});
 
-	$('.submit-address').on('click', function() {
-		info.address = $('.input-address').val();
-		info.city = $('.input-city').val();
-		info.state = $('.input-state').val();
-		info.zip = $('.input-zip').val();
 
-		$('.enter-address').hide();
-		$('.utility-api-signup').show();
-
-		//save to parse
-		var Address = Parse.Object.extend("Address");
-		var address = new Address();
-
-		address.set("address", info.address);
-		address.set("city", info.city);
-		address.set("state", info.state);
-		address.set("zip", info.zip);
-		address.set("customer", Parse.User.current());
-
-		address.save(null, {
-	        success: function(customer) {
-	        	alert("Address Saved");
-	        },
-	        error: function(customer, error) {
-	          	alert("Address not saved");
-	        }
-	    });
-	});
-});
+}); // END ON READY
