@@ -9,7 +9,10 @@
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/main.css">
   
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdAHn9T3KmYHREyATutN1U1EsdXwYu3FE"></script> -->
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <script src="https://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
   <script src="../lib/underscore.js"></script>
   <script src="../lib/authenticate.js"></script>
@@ -42,6 +45,18 @@
       <li><a class="log-in">Log In / Sign Up</a></li>
     </ul>
   </nav>
+
+  <section class="main-dashboard">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="project-list"></tbody>
+    </table>
+  </section>
 
   <section>
     <div class="portal">

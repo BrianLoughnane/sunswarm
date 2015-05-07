@@ -429,12 +429,25 @@ input:-ms-input-placeholder {
 	display: none;
 }
 
+/*Main Dashboard View*/
 
+.main-dashboard {
+	z-index: 1;
+	position: absolute;
+	top: 80px;
+	left: 0;
+	right: 0;
+}
+
+.main-dashboard table {
+	margin: auto;
+}
 /*Utility API login*/
 
-/*.utility-api-signup, .utility-login {
+.utility-api-signup, .utility-login {
 	display: none;
-}*/
+}
+
 
 
 
